@@ -1,22 +1,29 @@
-import Koa from 'koa';
+import koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import koaCors from 'koa2-cors';
 import dotenv from 'dotenv';
 
+
+import { registerRoutes } from "./routes";
+
 dotenv.config();
 async function serverSetup() {
-    const server: Koa =new Koa();
+    const server: koa =new koa();
     middleware(server);
     await startServer(server);
 };
 
 
-function middleware(server: Koa){
+function middleware(server: koa){
     server.use(bodyParser());
     server.use(koaCors());
+
+    const routes = registerRoutes().routes();
+
+    server.use(routes);
 };
 
-async function startServer(server: Koa) {
+async function startServer(server: koa) {
     try {
         const port = process.env.PORT;
         const serverSarted : Promise<void> = new Promise<void>((resolve,) => {

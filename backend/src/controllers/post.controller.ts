@@ -1,13 +1,14 @@
 import { Context} from 'koa';
 
-import {IPost} from '../interface/post.interface';
+
+
 import {PostModel} from '../models/posts/Post.model';
 
 
 export class Post {
     public async createPost (ctx: Context): Promise<void> {
         try {
-            const body = ctx.request.body!;
+            const body = ctx.request.body;
             const post = await PostModel.create(body);
             
             ctx.body = {

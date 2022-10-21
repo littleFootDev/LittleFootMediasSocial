@@ -15,7 +15,7 @@ async function serverSetup() {
 
 
 function middleware(server: koa){
-
+ 
     server.use(koaCors());
     server.use(koaBody());
     const routes = registerRoutes().routes();

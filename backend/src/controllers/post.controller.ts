@@ -25,7 +25,7 @@ export class Post {
             const posts = await PostModel.find({}).sort({created: -1});
 
             ctx.body = {
-                message: "All posts found",
+                //message: "All posts found",
                 posts
             }
         } catch (err) {
